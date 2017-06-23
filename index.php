@@ -2,7 +2,7 @@
 <!-- saved from url=(0022)http://skalexander.ru/ -->
 <html class="gr__skalexander_ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
-    <title>Сайт-портфолио веб-разработчика</title>
+    <title>Сайт-портфолио</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="http://skalexander.ru/wp-content/themes/MyTheme/favicon.png">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/skins/tomato.css">
     <link rel="stylesheet" href="css/media.css">
     <link rel="stylesheet" href="css/topnav.css">
+    <link rel="stylesheet" href="css/skills.css">
 
             
         <style type="text/css">
@@ -33,10 +34,7 @@ img.emoji {
     padding: 0 !important;
 }
 </style>
-<link rel="icon" href="http://skalexander.ru/wp-content/uploads/2015/10/cropped-sklogo11-32x32.png" sizes="32x32">
-<link rel="icon" href="http://skalexander.ru/wp-content/uploads/2015/10/cropped-sklogo11-192x192.png" sizes="192x192">
-<link rel="apple-touch-icon-precomposed" href="http://skalexander.ru/wp-content/uploads/2015/10/cropped-sklogo11-180x180.png">
-<meta name="msapplication-TileImage" content="http://skalexander.ru/wp-content/uploads/2015/10/cropped-sklogo11-270x270.png">
+
 </head>
 <body data-gr-c-s-loaded="true"><div class="parallax-mirror" style="visibility: hidden; z-index: 1; position: fixed; top: -719px; left: 0px; overflow: hidden; transform: translate3d(0px, 0px, 0px); height: 707px; width: 1057px;"><img class="parallax-slider" src="http://skalexander.ru/wp-content/themes/MyTheme/img/1.jpg" style="transform: translate3d(0px, 0px, 0px); position: absolute; top: 575.2px; left: -1px; height: 707px; width: 1060px;"></div>
 
@@ -51,9 +49,7 @@ img.emoji {
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="logo_container">
-                                       <img src="./ttt_files/sklogo11.png" alt="logotype">
-                </div>
+                
                 <div class="sitetitle">
                     Сайт-портфолио 
                 </div>
@@ -81,7 +77,7 @@ img.emoji {
                 <div class="top_text">
                     <h1 class="animated fadeInDown" style="opacity: 1;">Артём Клименко</h1>
                     <p class="animated fadeInUp" style="opacity: 1;">Web-разработчик / HTML-верстальщик</p>
-                    <p class="animated fadeInUp" style="opacity: 1;">Мобильный разработчик</p>
+                    <p class="animated fadeInUp" style="opacity: 1;">Android-разработчик</p>
                     <p class="animated fadeInUp" style="opacity: 1;">Программист PHP / JavaScript / Java</p>
                 </div>
             </div>
@@ -107,30 +103,25 @@ img.emoji {
                 </div>
                 <div class="col-md-4 col-md-pull-4 animation_2 animated fadeInLeft" style="opacity: 1;">
                     <h3>Немного о себе</h3>
-                    <p>Доброго времени суток, меня зовут Артём. Занимаюсь разработкой сайтов с нуля, под ключ.
-                        Специалист по CMS WordPress, Joomla. Выполняю верстку и программирование сайтов.
-                        Добавляю весь необходимый функционал на сайт. Делаю адаптивную верстку на Bootstrap,
-                        таким образом Ваш сайт будет отлично выглядеть на всех устройствах.
-                        Любой начатый проект довожу до конца, постоянно совершенствую свой профессиональный уровень.
-                        Вы можете заказать у меня разработку сайта с нуля, или связаться со мной для сотрудничества.
+                    <p>Доброго времени суток, меня зовут Артём. <br><br>
+                    Занимаюсь разработкой мобильных приложений, сайтов.
+
+                        <br><br>Любой начатый проект довожу до конца, постоянно совершенствую свой профессиональный уровень.
+
+                        
+
                     </p>
                 </div>
                 <div class="col-md-4 animation_3 personal_last_block animated fadeInRight" style="opacity: 1;">
                     <h3>Персональная информация</h3>
                     <h2 class="personal_header">Артём Клименко</h2>
                     <ul>
-                        <li>Профессиональное создание сайтов: разработка дизайна, HTML верстка, посадка на CMS WordPress, Joomla, программирование на PHP, JavaScript</li>
+                        <li>Создание сайтов: разработка дизайна, HTML верстка программирование на PHP, JavaScript</li>
+                        <li>Разработка android-приложений различных тематик</li>
                         <li>День рождения: 17 февраля 2000 года</li>
-                        <li>Skype: dexte92</li>
-                        <li>E-mail: <a href="mailto:masterdirectx@mail.ru">masterdirectx@mail.ru</a></li>
-                        <li>Веб-сайт: <a href="http://skalexander.ru/" target="_blank">skalexander.ru</a></li>
+                        <li>Сейчас нахожусь: Омск, Россия</li>
                     </ul>
-                    <div class="social_wrap">
-                        <ul>
-                            <li><a href="http://vk.com/skalexander" target="_blank"><i class="fa fa-vk"></i></a></li>
-                            <li><a href="https://www.facebook.com/directmaster" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -152,17 +143,49 @@ img.emoji {
 
     </div>
 </section>
+
+
+<div class="centertxt" > 
+
+    <div class="chart" data-percent="70" data-bar-color="#5bc0eb" data-animate="3000">
+        <div class="chart-content" style="top: 48.5px;">
+            <div class="percent">70</div>
+            <div class="chart-title">HTML5 | CSS3</div>
+        </div><!-- chart-content -->
+        <canvas height="178" width="178" style="position:absolute;"></canvas>
+    </div>
+
+    <div class="chart" data-percent="60" data-bar-color="#fde74c" data-animate="3000">
+        <div class="chart-content" style="top: 48.5px;">
+            <div class="percent">60</div>
+            <div class="chart-title">Android | Java</div>
+        </div><!-- chart-content -->
+    <canvas height="178" width="178" style="position: absolute;"></canvas></div>
+
+    <div class="chart" data-percent="50" data-bar-color="#fa7921" data-animate="3000">
+            <div class="chart-content" style="top: 48.5px;">
+                <div class="percent">50</div>
+                <div class="chart-title">PHP | MySQL</div>
+            </div><!-- chart-content -->
+        <canvas height="178" width="178" style="position: absolute;"></canvas></div>
+     <div class="chart" data-percent="50" data-bar-color="#e55934" data-animate="3000">
+        <div class="chart-content" style="top: 48.5px;">
+            <div class="percent">50</div>
+            <div class="chart-title">jQuery | Java Script</div>
+        </div><!-- chart-content -->
+    <canvas height="178" width="178" style="position: absolute;"></canvas></div>
+
+</div>
 <div role="navigation" class="navbar navbar-inverse" id="nav">
     <div class="container">
         <div class="row">
             <div class="col-sm-10 col-xs-12">
-                        <ul class="bmenu navbar-right" style="margin-top: auto; margin-left: 18%; width: 100% ">
-                        <li class="menu-1420"><a href="#top" title="Предложения о сотрудничестве">Наверх</a></li>
-                        <li class="menu-749 first"><a href="/blog/" title="">Портфолио</a></li>
-                        <li class="menu-1420"><a href="/sotrudnichestvo/" title="Предложения о сотрудничестве">Контакты</a></li>
-                        
-
-</ul>                           </div>
+                <ul class="bmenu navbar-right" style="margin-top: auto; margin-left: 18%; width: 100% ">
+                    <li class="menu-1420"><a href="#top" title="Подняться наверх">Наверх</a></li>
+                    <li class="menu-749 first"><a href="portfolio" title="Взгляни на мое портфолие">Портфолио</a></li>
+                    <li class="menu-1420"><a href="contacts" title="Напиши мне :)">Контакты</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -182,16 +205,21 @@ img.emoji {
                     <div class="col-md-6 col-sm-6 left">
                         <h3>Образование</h3>
                         <div class="resume_icon"><i class="icon-basic-book-pen"></i></div>
-                        <div class="resume_item animated fadeOutDown" style="opacity: 1;">
+                        <!-- <div class="resume_item animated fadeOutDown" style="opacity: 1;">
                             <div class="year">Высшее</div>
                             <p>Петрозаводский государственный университет(ПетрГУ), январь 2015,
                                 физико-технический факультет(ФТФ), специальность «Автоматизированные системы
                                 обработки информации и управления»(«АСОИУ»). Квалификация – специалист.</p>
+                        </div> -->
+                         <div class="resume_item animated" style="opacity: 0;">
+                            <div class="year">Разработка под Android</div>
+                            <p>Опыт работы два года. Уверенное знание Java, знание и применение основных шаблонов проектирования, стабильных и отказоустойчивых архитектурных решений MVC/MVP</p>
+                            <!-- <p>Adobe Photoshop, Inkscape, Fast stone image viewer, Notepad++, FileZilla, phpmyadmin, пакет Денвер, Sublime Text (+Emmet, LiveReload), phpStorm.</p> -->
                         </div>
                         <div class="resume_item animated" style="opacity: 0;">
                             <div class="year">Самообразование</div>
                             <p>Курсы в интернете, видеокурсы, книги, документация, форумы, статьи...<br>
-                                Созданием сайтов занимаюсь с 2011 года по настоящее время.</p>
+                                Общий стаж как программиста > 3 лет</p>
                         </div>
 
                     </div>
@@ -201,23 +229,21 @@ img.emoji {
                         <div class="resume_item animated fadeOutDown" style="opacity: 1;">
                             <div class="year">Знания в области Web</div>
                             <p>Языки программирования: PHP, JavaScript.
-                                Язык разметки HTML(5), таблицы стилей CSS(3), sass, язык запросов SQL, CMS WordPress, Joomla,
+                                Язык разметки HTML(5), таблицы стилей CSS(3), язык запросов SQL,
                                 адаптивная верстка под мобильные устройства, фреймворк Bootstrap. ООП на PHP5, СУБД MySQL, библиотека jQuery,
-                                сервер Apache, администрирование Windows, Linux.</p>
+                                сервер Apache.</p>
                         </div>
-                        <div class="resume_item animated" style="opacity: 0;">
-                            <div class="year">Программы</div>
-                            <p>Adobe Photoshop, Inkscape, Fast stone image viewer, Notepad++, FileZilla, phpmyadmin, пакет Денвер, Sublime Text (+Emmet, LiveReload), phpStorm.</p>
-                        </div>
+                       
                         <div class="resume_item animated" style="opacity: 0;">
                             <div class="year">Знания языков</div>
-                            <p>Русский, английский.</p>
+                            <p>Русский — родной<br>
+                            Английский — читаю профессиональную литературу</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container">
+       <!--  <div class="container">
             <div class="row">
                 <div class="dopinfo_container">
                     <div class="col-md-12 dopInformation">
@@ -245,7 +271,7 @@ img.emoji {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 
@@ -650,97 +676,19 @@ img.emoji {
     </div>
 </section> -->
 
-<section id="contacts" class="s_contacts bg_light _mPS2id-t">
-    <div class="">
-        <h2>Контакты</h2>
-        <div class="s_descr_wrap">
-            <div class="s_descr">Связаться со мной</div>
-        </div>
-    </div>
-    <div class="section_content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <div class="contact_box">
-                        <div class="contacts_icon icon-basic-geolocalize-05"></div>
-                        <h3>Адрес:</h3>
-                        <p>Россия, респ.Карелия, г.Петрозаводск</p>
-                    </div>
-                    <div class="contact_box">
-                        <div class="contacts_icon icon-basic-mail-open-text"></div>
-                        <h3>Email:</h3>
-                        <p>masterdirectx@mail.ru</p>
-                    </div>
-                    <div class="contact_box">
-                        <i class="fa fa-vk faicon"></i>
-                        <h3>ВКонтакте:</h3>
-                        <p><a href="http://vk.com/skalexander" target="_blank">vk.com/skalexander</a></p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6" style="margin-bottom:30px;">
-                    <div class="contact_box">
-                        <div class="contacts_icon icon-basic-webpage-img-txt"></div>
-                        <h3>Веб-сайт:</h3>
-                        <p><a href="http://skalexander.ru/" target="_blank">skalexander.ru</a></p>
-                    </div>
-                    <div class="contact_box">
-                        <i class="fa fa-skype faicon"></i>
-                        <h3>Skype:</h3>
-                        <p>dexte92</p>
-                    </div>
-                    <div class="contact_box">
-                        <i class="fa fa-facebook faicon"></i>
-                        <h3>Facebook:</h3>
-                        <p><a href="https://www.facebook.com/directmaster" target="_blank">facebook.com/<br>directmaster</a></p>
-                    </div>
-                </div>
-
-                <!--<div class="col-md-6 col-sm-6">
-
-                        <strong class="liveMsg">Оставьте ваше сообщение</strong>
-
-                    <form action="http://formspree.io/masterdirectx@mail.ru" class="main_form" novalidate target="_blank" method="post">
-                        <label class="form-group">
-                            <span class="color_element">*</span> Ваше имя:
-                            <input type="text" name="name" placeholder="Ваше имя" data-validation-required-message="Вы не ввели имя" required />
-                            <span class="help-block text-danger"></span>
-                        </label>
-                        <label class="form-group">
-                            <span class="color_element">*</span> Ваш E-mail:
-                            <input type="email" name="email" placeholder="Ваш E-mail" data-validation-required-message="Не корректно введен E-mail" required />
-                            <span class="help-block text-danger"></span>
-                        </label>
-                        <label class="form-group">
-                            <span class="color_element">*</span> Ваше сообщение:
-                            <textarea name="message" placeholder="Ваше сообщение" data-validation-required-message="Вы не ввели сообщение" required></textarea>
-                            <span class="help-block text-danger"></span>
-                        </label>
-                        <button>Отправить</button>
-                    </form>
-                </div>-->
-            </div>
-        </div>
-    </div>
-</section>
 </div>
 
 <footer class="main_footer bg_dark">
     <div class="container">
         <div class="row">
             <div class="col-md-12" style="color:#fff;">
-                © 2015 Александр Скалецкий. Профессиональное создание сайтов.
-                <div class="social_wrap">
-                    <ul>
-
-                        <li><a href="http://vk.com/skalexander" target="_blank"><i class="fa fa-vk"></i></a></li>
-                        <li><a href="https://www.facebook.com/directmaster" target="_blank"><i class="fa fa-facebook"></i></a></li>
-
-                    </ul>
-                </div>
+                © 2017 Артём Клименко
             </div>
         </div>
     </div>
 </footer>
+
+
 
 <div class="hidden"></div>
 <!--[if lt IE 9]>
@@ -759,4 +707,19 @@ img.emoji {
 <script src="libs/animate/animate-css.js"></script>
 <script src="libs/jqBootstrapValidation/jqBootstrapValidation.js"></script>
 <script src="js/common.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<script src="js/plugins.js"></script>
+
+<!-- <script src="libs/jquery/jquery.min.js"></script> -->
+<!-- <script src="js/grid.js"></script> -->
+
+
+<script type="text/javascript">
+    
+
+
+
+
+</script>
+
 </body></html>

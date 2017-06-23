@@ -1,0 +1,168 @@
+
+
+
+
+
+
+.dropdown{
+	text-align: center;
+	width: 400px;
+	margin: 50px auto 160px;
+	position: relative;
+	color: gray;
+	text-align: center;
+}
+
+.dropdown a{
+	display: block;
+	box-sizing: border-box;
+	text-decoration: none;
+	color: #FFF;
+	text-align: center;
+	background-color: #6BB9E1;
+	font-size: 13px;
+	width: 120px;
+	padding: 9px 0;
+	border-radius: 2px;
+	margin: 4px auto 0;
+	opacity: 0.8;
+}
+
+.dropdown span {
+	background-color: #EC7164;
+	display: block;
+	box-sizing: border-box;
+	color: #FFF;
+	margin:0 auto;
+	font-size: 22px;
+	padding: 11px 15px;
+	line-height: 1;
+}
+
+.dropdown ul li a.active{
+	background-color: #687AD7;
+	opacity: 0.8 !important;
+}
+
+.dropdown ul li a:hover {
+	opacity: 1;
+}
+
+.dropdown ul{
+	position: absolute;
+	z-index: 200;
+	left: 50%;
+	margin: 10px 0 0 -250px;
+	list-style: none;
+	padding: 0;
+	width: 500px;
+}
+
+.dropdown ul li{
+	display: inline-block;
+}
+
+.dropdown:hover ul {
+	height: 180px;
+}
+
+
+
+
+.image-effect-future{
+	width: 700px;
+	height: 480px;
+	overflow: hidden;
+	position: relative;
+	margin: 0 auto;
+	
+}
+
+
+.image-effect-future .image-layer{
+	position: absolute;
+	top:0;
+	left: 0;
+	height: 300px;
+	overflow: hidden;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+	z-index: 1;
+}
+
+
+.image-effect-future .share-layer {
+	position: absolute;
+	top: 50%;
+	left: 350px;
+
+	border: 1px solid transparent;
+	width: 0;
+	height: 0;
+	z-index: 10;
+
+	-webkit-transition:	all 0.4s 0s,
+						border 0.4s 0.6s,
+						height 0.4s 0.4s,
+						margin 0.4s 0.4s;
+
+	transition:			all 0.4s 0s,
+						border 0.4s 0.6s,
+						height 0.4s 0.4s,
+						margin 0.4s 0.4s;
+}
+
+.image-effect-future:hover .share-layer{
+	height: 200px;
+	width: 400px;
+	margin-top: -100px;
+	border-color: rgba(255,255,255,0.5);
+	background-color: rgba(255,255,255,0.3);
+
+	-webkit-transform: translateX(-200px);
+	transform: translateX(-200px);
+
+	-webkit-transition:	all 0.4s 0.4s,
+						border 0.4s 0s,
+						height 0.4s 0s,
+						margin 0.4s 0s;
+
+	transition:			all 0.4s 0.4s,
+						border 0.4s 0s,
+						height 0.4s 0s,
+						margin 0.4s 0s;
+}
+
+
+.image-effect-future .share-button{
+	display: inline-block;
+	text-decoration: none;
+	font-size: 13px;
+	color: #ffffff;
+	padding: 12px;
+	width: 90px;
+	border-radius: 2px;
+	opacity: 0;
+	margin: 80px 10px;
+}
+
+.image-effect-future:hover .share-button{
+	opacity: 1;
+
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+	-webkit-transition-delay: 0.7s;
+	transition-delay: 0.7s;
+}
+
+.share-via-vk{
+	background-color:#4C75A3;
+}
+
+.share-via-facebook{
+	background-color:#3b5998;
+}
+
+.share-via-twitter{
+	background-color:#00aced;
+}
