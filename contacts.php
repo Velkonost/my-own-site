@@ -44,40 +44,6 @@ img.emoji {
 </div>
 
 <div id="main">
-<!-- <header class="main_head main_color_bg" data-parallax="scroll" data-image-src="http://skalexander.ru/wp-content/themes/MyTheme/img/1.jpg" data-z-index="1" style="height: 707px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                
-                <div class="sitetitle">
-                    Сайт-портфолио 
-                </div>
-                
-                <nav class="top_mnu">
-                    <ul>
-                        <li><a href="http://skalexander.ru/#about" class="_mPS2id-h mPS2id-highlight mPS2id-highlight-first mPS2id-highlight-last">Обо мне<span></span></a></li>
-                        <li><a href="http://skalexander.ru/#resume" class="_mPS2id-h">Резюме<span></span></a></li>
-                        <li><a href="http://skalexander.ru/#portfolio" class="_mPS2id-h">Портфолио<span></span></a></li>
-                        <li><a href="http://skalexander.ru/#contacts" class="_mPS2id-h">Контакты<span></span></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <div class="top_wrapper">
-        <div class="top_descr">
-            <div class="top_centered">
-                <div class="top_text">
-                    <h1 class="animated fadeInDown" style="opacity: 1;">Артём Клименко</h1>
-                    <p class="animated fadeInUp" style="opacity: 1;">Web-разработчик / HTML-верстальщик</p>
-                    <p class="animated fadeInUp" style="opacity: 1;">Android-разработчик</p>
-                    <p class="animated fadeInUp" style="opacity: 1;">Программист PHP / JavaScript / Java</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</header> -->
-
 
 <div role="navigation" class="navbar navbar-inverse">
     <div class="container">
@@ -101,21 +67,23 @@ img.emoji {
         </div>
     </div>
 
-    <div class="image-effect-future" >
+    <div class="image-effect-future">
 
         <div class="share-layer">
-            <a href="https://vk.com/velkonost" target="_blank">
-                <img src="img/vk.png" style="width: 15%; height: auto; margin-left: 11%; margin-top: 18% ">
-            </a>
-            <a href="https://t.me/velkonost" target="_blank">
-                <img src="img/telegram.png" style="width: 15%; height: auto; margin-left: 5%; margin-top: 18% ">
-            </a>
-            <a href="https://github.com/Velkonost" target="_blank">
-                <img src="img/github.png" style="width: 15%; height: auto; margin-left: 5%; margin-top: 18% ">
-            </a>
-            <a href="skype:velkonost?userinfo">
-                <img src="img/skype.png" style="width: 15%; height: auto; margin-left: 5%; margin-top: 18% ">
-            </a>
+            <div class="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a">
+                <a href="https://vk.com/velkonost" target="_blank" class="hi-icon">
+                    <img src="img/vk.png" class="hi-icon" style="width: 15%; height: auto; margin-left: 11%; margin-top: 18% ">
+                </a>
+                <a href="https://t.me/velkonost" target="_blank">
+                    <img src="img/telegram.png" style="width: 15%; height: auto; margin-left: 5%; margin-top: 18% ">
+                </a>
+                <a href="https://github.com/Velkonost" target="_blank">
+                    <img src="img/github.png" style="width: 15%; height: auto; margin-left: 5%; margin-top: 18% ">
+                </a>
+                <a href="skype:velkonost?userinfo">
+                    <img src="img/skype.png" style="width: 15%; height: auto; margin-left: 5%; margin-top: 18% ">
+                </a>
+            </div>
         </div>
 
         <div class="image-layer" style="width: 100%;height:100%" >
@@ -195,6 +163,7 @@ img.emoji {
 <script src="js/common.js"></script>
 <script src="js/modernizr.custom.js"></script>
 <script src="js/plugins.js"></script>
+
 
 <!-- <script src="libs/jquery/jquery.min.js"></script> -->
 <!-- <script src="js/grid.js"></script> -->

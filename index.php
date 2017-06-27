@@ -182,7 +182,7 @@ img.emoji {
             <div class="col-sm-10 col-xs-12">
                 <ul class="bmenu navbar-right" style="margin-top: auto; margin-left: 18%; width: 100% ">
                     <li class="menu-1420"><a href="#top" title="Подняться наверх">Наверх</a></li>
-                    <li class="menu-749 first"><a href="portfolio" title="Взгляни на мое портфолие">Портфолио</a></li>
+                    <li class="menu-749 first"><a href="portfolio" title="Взгляни на мое портфолио">Портфолио</a></li>
                     <li class="menu-1420"><a href="contacts" title="Напиши мне :)">Контакты</a></li>
                 </ul>
             </div>

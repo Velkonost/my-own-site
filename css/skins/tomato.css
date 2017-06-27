@@ -83,7 +83,7 @@ section h3 {
   color: #888;
   letter-spacing: 2px; }
 .s_portfolio li.active {
-  color: #fff;
+  color: #000;
   border-bottom: 1px solid #FF6347; }
 
 .portfolio_item .port_item_cont a {
