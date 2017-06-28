@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0022)http://skalexander.ru/ -->
-<html class="gr__skalexander_ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
-    <title>Сайт-портфолио</title>
+    <title>А.К. - Контакты</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="http://skalexander.ru/wp-content/themes/MyTheme/favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="libs/bootstrap/bootstrap-grid.min.css">
-    <!-- <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css"> -->
-    <!-- <link rel="stylesheet" href="libs/linea/styles.css"> -->
     <link rel="stylesheet" href="libs/magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="libs/animate/animate.min.css">
     <link rel="stylesheet" href="css/fonts.css">
@@ -19,25 +16,9 @@
     <link rel="stylesheet" href="css/topnav.css">
     <link rel="stylesheet" href="css/skills.css">
     <link rel="stylesheet" href="css/icons.css">
-    
-            
-        <style type="text/css">
-img.wp-smiley,
-img.emoji {
-    display: inline !important;
-    border: none !important;
-    box-shadow: none !important;
-    height: 1em !important;
-    width: 1em !important;
-    margin: 0 .07em !important;
-    vertical-align: -0.1em !important;
-    background: none !important;
-    padding: 0 !important;
-}
-</style>
 
 </head>
-<body data-gr-c-s-loaded="true"><div class="parallax-mirror" style="visibility: hidden; z-index: 1; position: fixed; top: -719px; left: 0px; overflow: hidden; transform: translate3d(0px, 0px, 0px); height: 707px; width: 1057px;"><img class="parallax-slider" src="http://skalexander.ru/wp-content/themes/MyTheme/img/1.jpg" style="transform: translate3d(0px, 0px, 0px); position: absolute; top: 575.2px; left: -1px; height: 707px; width: 1060px;"></div>
+<body data-gr-c-s-loaded="true" oncontextmenu="return false" oncopy="return false;" oncontextmenu="return false" onselectstart="return false;">
 
 <div class="loader" style="display: none;">
     <div class="loader_inner" style="display: none;"></div>
@@ -50,7 +31,7 @@ img.emoji {
         <div class="row">
             <div class="col-sm-10 col-xs-12">
                 <ul class="bmenu navbar-right" style="margin-top: auto; margin-left: 25%; width: 100% ">
-                    <li class="menu-1420"><a href="/" title="Главная страница">Главная</a></li>
+                    <li class="menu-1420"><a href="/main" title="Главная страница">Главная</a></li>
                     <li class="menu-749 first"><a href="portfolio" title="Взгляни на мое портфолио">Портфолио</a></li>
                     
                 </ul>
@@ -145,12 +126,6 @@ img.emoji {
 
 
 <div class="hidden"></div>
-<!--[if lt IE 9]>
-<script src="http://skalexander.ru/wp-content/themes/MyTheme/libs/html5shiv/es5-shim.min.js"></script>
-<script src="http://skalexander.ru/wp-content/themes/MyTheme/libs/html5shiv/html5shiv.min.js"></script>
-<script src="http://skalexander.ru/wp-content/themes/MyTheme/libs/html5shiv/html5shiv-printshiv.min.js"></script>
-<script src="http://skalexander.ru/wp-content/themes/MyTheme/libs/respond/respond.min.js"></script>
-<![endif]-->
 
 <script src="libs/jquery/jquery-2.1.3.min.js"></script>
 <script src="libs/parallax/parallax.min.js"></script>
@@ -163,18 +138,5 @@ img.emoji {
 <script src="js/common.js"></script>
 <script src="js/modernizr.custom.js"></script>
 <script src="js/plugins.js"></script>
-
-
-<!-- <script src="libs/jquery/jquery.min.js"></script> -->
-<!-- <script src="js/grid.js"></script> -->
-
-
-<script type="text/javascript">
-    
-
-
-
-
-</script>
 
 </body></html>
