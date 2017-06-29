@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/icons.css">
 
 </head>
-<body data-gr-c-s-loaded="true" oncontextmenu="return false" oncopy="return false;" oncontextmenu="return false" onselectstart="return false;">
+<body data-gr-c-s-loaded="true" oncontextmenu="return false" oncontextmenu="return false" onselectstart="return false;">
 
 <div class="loader" style="display: none;">
     <div class="loader_inner" style="display: none;"></div>
@@ -88,7 +88,7 @@
                     <div class="contact_box">
                         <div class="contacts_icon icon-basic-mail-open-text"></div>
                         <h3>Email:</h3>
-                        <p>velkonost@gmail.com</p>
+                        <p><a id="email" onclick="selectEmail()">velkonost@gmail.com</a></p>
                     </div>
                     
                 </div>
@@ -123,7 +123,19 @@
     </div>
 </footer>
 
+<script type="text/javascript">
+    
+ function selectEmail() {
+     var element = document.getElementById('email');
+      var selection = window.getSelection();        
+        var range = document.createRange();
+        range.selectNodeContents(element);
+        selection.removeAllRanges();
+        selection.addRange(range);
+ }
+    
 
+</script>
 
 <div class="hidden"></div>
 

@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
  <head>
+ <title>А.К. - Сайт-портфолио</title>
   <meta charset="utf-8">
  </head>
  
