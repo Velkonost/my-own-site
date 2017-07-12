@@ -1,0 +1,120 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  color: #191919;
+}
+
+html {
+  background-color: #fafafa;
+}
+
+.card {
+  display: block;
+  width: 80%;
+  margin: 72px auto 72px;
+  padding: 0px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+.card header {
+  padding: 16px;
+}
+.card header figure {
+  width: 40px;
+  height: 40px;
+  background-color: #dddddd;
+  background-image: url(http://www.msudenver.edu/media/sampleassets/profile-placeholder.png);
+  background-size: cover;
+  margin: 0 16px 0 0;
+  padding: 0;
+  border-radius: 50%;
+  float: left;
+}
+.card header div.text h1 {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 1;
+  padding: 0;
+  margin: 8px;
+}
+.card header div.text h2 {
+  color: #757575;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  padding: 0;
+  margin: 12px 0 0;
+}
+.card header div.text.small h1 {
+  margin-top: 0px;
+  font-size: 14px;
+}
+.card div.supporting_text {
+  padding: 16px;
+}
+.card div.supporting_text p {
+  font-size: 14px;
+  line-height: 2;
+  margin: 0;
+  padding: 0 0 8px;
+}
+.card div.supplemental_actions {
+  padding: 8px;
+  height: 36px;
+}
+.card div.supplemental_actions div.right {
+  float: right;
+}
+.card div.supplemental_actions button {
+  color: #757575;
+  height: 36px;
+  padding: 0 8px;
+  background-color: #ffffff;
+  border: none;
+  font-size: 12pt;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+.card div.supplemental_actions button.icon {
+  width: 36px;
+  
+}
+
+.icon_more{
+   -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.card div.supplemental_actions button + button {
+  margin-left: 8px;
+}
+.card div.supplemental_actions button:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
+}
+.card div.supplemental_actions button i {
+  color: #757575;
+  font-size: 21px;
+  line-height: 36px;
+}
+
+[elevation='1'] {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+[elevation='2'] {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+[elevation='3'] {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+[elevation='4'] {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+[elevation='5'] {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}

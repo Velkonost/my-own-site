@@ -35,7 +35,29 @@ if (isset($_COOKIE['WebEngineerRestrictedArea'])){
 }
 
 if (isset($access) and $access = TRUE) {?>
-<?php echo $data_array[0]; ?>
+
+<?php
+
+$activeSubjects = $dbconnect->query("SELECT subject_id FROM active_subjects WHERE user_id='".$user_data['id']."'");
+$subjects_ids = $activeSubjects -> fetch_array();
+
+$title_subjects = [];
+$description_subjects = [];
+$task_amount_subjects = [];
+
+
+for ($i = 0; $i < sizeof($subjects_ids) - 1; $i ++) {
+	$subject = $dbconnect->query("SELECT * FROM subjects WHERE id='".$subjects_ids[$i]."'");
+	$subject_data = $subject -> fetch_array();
+
+	array_push($title_subjects, $subject_data['title']);
+	array_push($description_subjects, $subject_data['description']);
+	array_push($task_amount_subjects, $subject_data['amount_tasks']);
+}
+
+?>
+
+<!-- <?php echo $data_array[0]; ?> -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -43,6 +65,8 @@ if (isset($access) and $access = TRUE) {?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
     <title>title</title>
 
@@ -51,6 +75,11 @@ if (isset($access) and $access = TRUE) {?>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="material/material.min.css">
     <link rel="stylesheet" href="material/styles.css">
+    <link rel="stylesheet" href="material/preloader.css">
+    <link rel="stylesheet" href="material/card.css">
+    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="material/expand_card.css">
+    <link rel="stylesheet" type="text/css" href="material/table.css">
     <style>
     #view-source {
       position: fixed;
@@ -63,11 +92,18 @@ if (isset($access) and $access = TRUE) {?>
     }
     </style>
 </head>
-<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-<input type='submit' name='exit' id="exit" value='Выйти' style="display: none" />
-</form>
 
-  <body style="background-color: #8EB0BC">
+
+
+
+	<body style="background-color: #8EB0BC">
+  		<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+  			<input type='submit' name='exit' id="exit" value='Выйти' style="display: none" />
+		</form>
+  		<header id="preloader">
+  			<div aria-busy="true" aria-label="Loading, please wait..." role="progressbar"></div>
+		</header>
+
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
       <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
@@ -121,27 +157,247 @@ if (isset($access) and $access = TRUE) {?>
           <span class="mdl-navigation__link" href="">Прочее</span>
           <a class="mdl-navigation__link" href="">Настройки</a>
           <a class="mdl-navigation__link" onclick="goOut();" href="javascript:void(0);">Выход</a>
-          
-         
         </nav>
       </div>
 
       <div class="android-content mdl-layout__content">
         <a name="top"></a>
         <div class="android-be-together-section mdl-typography--text-center">
-          <div class="logo-font android-slogan">be together. not the same.</div>
-          <div class="logo-font android-sub-slogan">welcome to android... be yourself. do your thing. see what's going on.</div>
-          <div class="logo-font android-create-character">
-            <a href=""><img src="images/andy.png"> create your android character</a>
-          </div>
+        
+		<?php for ($i = 0; $i < sizeof($subjects_ids) - 1; $i ++) { ?>
+        <aside class="card" elevation="2">
+			<div class="supplemental_actions">
+				<!-- <button class="icon icon_more" style="float:left"><i class="material-icons">more</i></button> -->
+				<button class="icon" style="float:left"><i class="material-icons" >arrow_drop_down_circle</i></button>
+			
+				<button style="float:left" disabled=""><?=$title_subjects[$i] ?></button>
 
-          <a href="#screens">
-            <button class="android-fab mdl-button mdl-button--colored mdl-js-button mdl-button--fab mdl-js-ripple-effect">
-              <i class="material-icons">expand_more</i>
-            </button>
-          </a>
+				<div class="google-expando--wrap">
+  					<div class="google-expando">
+  						<div class="google-expando__icon">
+							<button class="icon" disabled="" style="float:left"><i class="material-icons">info</i></button>
+						</div>
+						<div class="google-expando__card" aria-hidden="true">
+							<?=$description_subjects[$i] ?>
+						</div>
+					</div>
+				</div>
+				<div class="right">
+					<button>Добавить попытку</button>
+				</div>
+			</div>
+		</aside>
+		<?php } ?>
+	<!-- двойная стрелочка(показывающая все попытки), стрелочка, название, иконка доп инфы(описание), кнопка "добавить новую попытку" -->
+		
+
+
+		<div id="demo">
+  
+
+
+  
+  <!-- Responsive table starts here -->
+  <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
+  <div class="table-responsive-vertical shadow-z-1">
+  <!-- Table starts here -->
+  <table id="table" class="table table-hover table-mc-light-blue">
+      <thead>
+      
+      </thead>
+      <tbody>
+        <tr>
+          <td data-title="ID">1</td>
+          <td data-title="Name">Material Design Color Palette</td>
+          <td data-title="Link">
+            <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
+          </td>
+          <td data-title="Status">Completed</td>
+        </tr>
+        <tr>
+          <td data-title="ID">2</td>
+          <td data-title="Name">Material Design Iconic Font</td>
+          <td data-title="Link">
+            <a href="https://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
+            <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
+          </td>
+          <td data-title="Status">Completed</td>
+        </tr>
+        <tr>
+          <td data-title="ID">3</td>
+          <td data-title="Name">Material Design Hierarchical Display</td>
+          <td data-title="Link">
+            <a href="https://codepen.io/zavoloklom/pen/eNaEBM" target="_blank">Codepen</a>
+            <a href="https://github.com/zavoloklom/material-design-hierarchical-display" target="_blank">GitHub</a>
+          </td>
+          <td data-title="Status">Completed</td>
+        </tr>
+        <tr>
+          <td data-title="ID">4</td>
+          <td data-title="Name">Material Design Sidebar</td>
+          <td data-title="Link"><a href="https://codepen.io/zavoloklom/pen/dIgco" target="_blank">Codepen</a></td>
+          <td data-title="Status">Completed</td>
+        </tr>
+        <tr>
+          <td data-title="ID">5</td>
+          <td data-title="Name">Material Design Tiles</td>
+          <td data-title="Link">
+            <a href="https://codepen.io/zavoloklom/pen/wtApI" target="_blank">Codepen</a>
+          </td>
+          <td data-title="Status">Completed</td>
+        </tr>
+        <tr>
+          <td data-title="ID">6</td>
+          <td data-title="Name">Material Design Typography</td>
+          <td data-title="Link">
+            <a href="https://codepen.io/zavoloklom/pen/IkaFL" target="_blank">Codepen</a>
+            <a href="https://github.com/zavoloklom/material-design-typography" target="_blank">GitHub</a>
+          </td>
+          <td data-title="Status">Completed</td>
+        </tr>
+        <tr>
+          <td data-title="ID">7</td>
+          <td data-title="Name">Material Design Buttons</td>
+          <td data-title="Link">
+            <a href="https://codepen.io/zavoloklom/pen/Gubja" target="_blank">Codepen</a>
+          </td>
+          <td data-title="Status">In progress</td>
+        </tr>
+        <tr>
+          <td data-title="ID">8</td>
+          <td data-title="Name">Material Design Form Elements</td>
+          <td data-title="Link">
+            <a href="https://codepen.io/zavoloklom/pen/yaozl" target="_blank">Codepen</a>
+          </td>
+          <td data-title="Status">In progress</td>
+        </tr>
+        <tr>
+          <td data-title="ID">9</td>
+          <td data-title="Name">Material Design Email Template</td>
+          <td data-title="Link">
+            <a href="https://codepen.io/zavoloklom/pen/qEVqzx" target="_blank">Codepen</a>
+          </td>
+          <td data-title="Status">Completed</td>
+        </tr>
+        <tr>
+          <td data-title="ID">10</td>
+          <td data-title="Name">Material Design Animation Timing (old one)</td>
+          <td data-title="Link">
+            <a href="https://codepen.io/zavoloklom/pen/Jbrho" target="_blank">Codepen</a>
+          </td>
+          <td data-title="Status">Completed</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Table Constructor change table classes, you don't need it in your project -->
+  <div style="width: 45%; display: inline-block; vertical-align: top">
+  <h2>Table Constructor</h2>
+  <p>
+    <label for="table-bordered">Style: bordered</label>
+    <select id="table-bordered" name="table-bordered">
+      <option selected value="">No</option>
+      <option value="table-bordered">Yes</option>
+    </select>
+  </p>
+  <p>
+    <label for="table-striped">Style: striped</label>
+    <select id="table-striped" name="table-striped">
+      <option selected value="">No</option>
+      <option value="table-striped">Yes</option>
+    </select>
+  </p>
+  <p>
+    <label for="table-hover">Style: hover</label>
+    <select id="table-hover" name="table-hover">
+      <option value="">No</option>
+      <option selected value="table-hover">Yes</option>
+    </select>
+  </p>
+  <p>
+    <label for="table-color">Style: color</label>
+    <select id="table-color" name="table-color">
+      <option value="">Default</option>
+      <option value="table-mc-red">Red</option>
+      <option value="table-mc-pink">Pink</option>
+      <option value="table-mc-purple">Purple</option>
+      <option value="table-mc-deep-purple">Deep Purple</option>
+      <option value="table-mc-indigo">Indigo</option>
+      <option value="table-mc-blue">Blue</option>
+      <option selected value="table-mc-light-blue">Light Blue</option>
+      <option value="table-mc-cyan">Cyan</option>
+      <option value="table-mc-teal">Teal</option>
+      <option value="table-mc-green">Green</option>
+      <option value="table-mc-light-green">Light Green</option>
+      <option value="table-mc-lime">Lime</option>
+      <option value="table-mc-yellow">Yellow</option>
+      <option value="table-mc-amber">Amber</option>
+      <option value="table-mc-orange">Orange</option>
+      <option value="table-mc-deep-orange">Deep Orange</option>
+    </select>
+  </p>  
+  </div>
+  <div style="width: 45%; display: inline-block; vertical-align: top; margin-left: 30px;">
+    <h2>Description</h2>
+    <p>Tested on Win8.1 with browsers: Chrome 37, Firefox 32, Opera 25, IE 11, Safari 5.1.7</p>
+    <p>You can use this table in Bootstrap (v3) projects. Material Design Responsive Table CSS-style will override basic bootstrap style.</p>
+    <p class="mdt-subhead-2"><strong>Donate:</strong> You can support me via <a class="paypal" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=s%2ekupletsky%40gmail%2ecom&amp;lc=US&amp;item_name=Material%20Design%20Responsive%20Table&amp;currency_code=USD&amp;bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted">PayPal</a>, <a class="webmoney" href="https://funding.webmoney.ru/material-design-iconic-font/donate">WebMoney</a> or <a class="gratipay" href="http://gratipay.com/zavoloklom/" target="_blank">Gratipay</a></p>
+  </div>
+</div>
+
+
+  
+  <!-- Table Constructor change table classes, you don't need it in your project -->
+  <div style="width: 45%; display: inline-block; vertical-align: top">
+  <h2>Table Constructor</h2>
+  <p>
+    <label for="table-bordered">Style: bordered</label>
+    <select id="table-bordered" name="table-bordered">
+      <option selected value="">No</option>
+      <option value="table-bordered">Yes</option>
+    </select>
+  </p>
+  <p>
+    <label for="table-striped">Style: striped</label>
+    <select id="table-striped" name="table-striped">
+      <option selected value="">No</option>
+      <option value="table-striped">Yes</option>
+    </select>
+  </p>
+  <p>
+    <label for="table-hover">Style: hover</label>
+    <select id="table-hover" name="table-hover">
+      <option value="">No</option>
+      <option selected value="table-hover">Yes</option>
+    </select>
+  </p>
+  <p>
+    <label for="table-color">Style: color</label>
+    <select id="table-color" name="table-color">
+      <option value="">Default</option>
+      <option value="table-mc-red">Red</option>
+      <option value="table-mc-pink">Pink</option>
+      <option value="table-mc-purple">Purple</option>
+      <option value="table-mc-deep-purple">Deep Purple</option>
+      <option value="table-mc-indigo">Indigo</option>
+      <option value="table-mc-blue">Blue</option>
+      <option selected value="table-mc-light-blue">Light Blue</option>
+      <option value="table-mc-cyan">Cyan</option>
+      <option value="table-mc-teal">Teal</option>
+      <option value="table-mc-green">Green</option>
+      <option value="table-mc-light-green">Light Green</option>
+      <option value="table-mc-lime">Lime</option>
+      <option value="table-mc-yellow">Yellow</option>
+      <option value="table-mc-amber">Amber</option>
+      <option value="table-mc-orange">Orange</option>
+      <option value="table-mc-deep-orange">Deep Orange</option>
+    </select>
+  </p>  
+  </div>
+  
         </div>
-        <div class="android-screen-section mdl-typography--text-center">
+        <!-- <div class="android-screen-section mdl-typography--text-center">
           <a name="screens"></a>
           <div class="mdl-typography--display-1-color-contrast">Powering screens of all sizes</div>
           <div class="android-screens">
@@ -177,7 +433,7 @@ if (isset($access) and $access = TRUE) {?>
               <a class="android-link mdl-typography--font-regular mdl-typography--text-uppercase mdl-typography--text-left" href="">Coming Soon: Android Auto</a>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="android-wear-section">
           <div class="android-wear-band">
             <div class="android-wear-band-text">
@@ -333,12 +589,24 @@ if (isset($access) and $access = TRUE) {?>
       </div>
     </div>
     <div class="gradient"></div>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
     <script src="material/material.min.js"></script>
+    <script src="material/table.js"></script>
+    <script src="material/card.js"></script>
+    <script src="material/expand_card.js"></script>
 <script type="text/javascript">
 	
 function goOut(){
   $("#exit").click();
 }
+
+jQuery(window).load(function () {
+
+    $('#preloader').hide();
+});
+
+
 
 </script>
 

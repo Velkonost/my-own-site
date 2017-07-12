@@ -1,0 +1,39 @@
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+	.card div.supplemental_actions button {
+  		font-size: 12pt;
+	}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	.card div.supplemental_actions button {
+  		font-size: 9pt;
+	}
+	.card {
+		width: 100%;
+	}
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+	.card div.supplemental_actions button {
+  		font-size: 6pt;
+	}
+	.card {
+		width: 100%;
+	}
+	
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+	.card div.supplemental_actions button {
+  		font-size: 6pt;
+	}
+	.card {
+		width: 100%;
+	}
+	
+}
+
