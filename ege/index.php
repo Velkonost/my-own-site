@@ -39,14 +39,20 @@ if (isset($access) and $access = TRUE) {?>
 <?php
 
 $activeSubjects = $dbconnect->query("SELECT subject_id FROM active_subjects WHERE user_id='".$user_data['id']."'");
-$subjects_ids = $activeSubjects -> fetch_array();
+$subjects_ids = [];
 
+while ($subject_id = ($activeSubjects -> fetch_array())) {
+	array_push($subjects_ids, $subject_id['subject_id']);
+}
+
+// $subjects_ids = mysqli_fetch_assoc($activeSubjects);
+// echo sizeof($subjects_ids);
 $title_subjects = [];
 $description_subjects = [];
 $task_amount_subjects = [];
 
 
-for ($i = 0; $i < sizeof($subjects_ids) - 1; $i ++) {
+for ($i = 0; $i <= sizeof($subjects_ids) - 1; $i ++) {
 	$subject = $dbconnect->query("SELECT * FROM subjects WHERE id='".$subjects_ids[$i]."'");
 	$subject_data = $subject -> fetch_array();
 
@@ -60,25 +66,30 @@ $description_all_subjects = [];
 $task_amount_all_subjects = [];
 
 $all_subjects = $dbconnect->query("SELECT * FROM subjects");
-echo $all_subjects -> fetch_array();
 
-for ($i = 0; $i < sizeof($all_subjects) - 1; $i ++) {
-	
-	$subject_data = $all_subjects[$i] -> fetch_array();
-
-	array_push($title_all_subjects, $subject_data['title']);
-	array_push($description_all_subjects, $subject_data['description']);
-	array_push($task_amount_all_subjects, $subject_data['amount_tasks']);
-
-	echo $subject_data['title'];
+while ($subject_id = ($all_subjects -> fetch_array())) {
+	array_push($title_all_subjects, $subject_id['title']);
+	array_push($description_all_subjects, $subject_id['description']);
+	array_push($task_amount_all_subjects, $subject_id['amount_tasks']);
 }
+
+// for ($i = 0; $i < sizeof($all_subjects) - 1; $i ++) {
+	
+// 	$subject_data = $all_subjects[$i] -> fetch_array();
+
+// 	array_push($title_all_subjects, $subject_data['title']);
+// 	array_push($description_all_subjects, $subject_data['description']);
+// 	array_push($task_amount_all_subjects, $subject_data['amount_tasks']);
+
+// 	echo $subject_data['title'];
+// }
 
 
 ?>
 
 <!-- <?php echo $data_array[0]; ?> -->
 <!doctype html>
-<!-- <html lang="en">
+<html lang="en">
   	<head>
 	    <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -186,7 +197,7 @@ for ($i = 0; $i < sizeof($all_subjects) - 1; $i ++) {
         <a name="top"></a>
         
         
-			<?php for ($i = 0; $i < sizeof($subjects_ids) - 1; $i ++) { ?>
+			<?php for ($i = 0; $i <= sizeof($subjects_ids) - 1; $i ++) { ?>
 	        <aside class="card" elevation="2">
 				<div class="supplemental_actions">
 					<!-- <button class="icon icon_more" style="float:left"><i class="material-icons">more</i></button> -->
@@ -209,7 +220,6 @@ for ($i = 0; $i < sizeof($all_subjects) - 1; $i ++) {
 					</div>
 				</div>
 			</aside>
-			<?php } ?>
 	<!-- двойная стрелочка(показывающая все попытки), стрелочка, название, иконка доп инфы(описание), кнопка "добавить новую попытку" -->
 			<div class="demo">
 				<div class="table-responsive-vertical shadow-z-1">
@@ -234,6 +244,7 @@ for ($i = 0; $i < sizeof($all_subjects) - 1; $i ++) {
 				    </table>
 				</div>
 			</div>
+			<?php } ?>
 		
 		   	<aside class="card" elevation="2" style="max-height: 52px; margin-top: 10px">
 				<div class="android-header-spacer mdl-layout-spacer"></div>
@@ -258,7 +269,7 @@ for ($i = 0; $i < sizeof($all_subjects) - 1; $i ++) {
         
 
       
-        <div class="android-screen-section mdl-typography--text-center">
+        <!-- <div class="android-screen-section mdl-typography--text-center">
           <a name="screens"></a>
           <div class="mdl-typography--display-1-color-contrast">Powering screens of all sizes</div>
           <div class="android-screens">
@@ -294,7 +305,7 @@ for ($i = 0; $i < sizeof($all_subjects) - 1; $i ++) {
               <a class="android-link mdl-typography--font-regular mdl-typography--text-uppercase mdl-typography--text-left" href="">Coming Soon: Android Auto</a>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="android-wear-section">
           <div class="android-wear-band">
             <div class="android-wear-band-text">
@@ -457,13 +468,169 @@ for ($i = 0; $i < sizeof($all_subjects) - 1; $i ++) {
     <script src="material/table.js"></script>
     <script src="material/card.js"></script>
     <script src="material/expand_card.js"></script>
--->
 <script type="text/javascript">
 	
+	function goOut(){
+	  $("#exit").click();
+	}
+
+	jQuery(window).load(function () {
+
+	    $('#preloader').hide();
+	});
+
+	// $('#table_subjects > tr').eq(1).children('td').eq(1).remove();
+	$('#table_subjects > tr > td').remove();
+
+
+	$('#add_new_sub_btn').on('click', function() {
+		document.getElementById('add_new_sub_btn').innerText = 'done';
+	});
+
+	var $div = $("#add_new_sub");
+	var observer = new MutationObserver(function(mutations) {
+	    mutations.forEach(function(mutation) {
+	        if (mutation.attributeName === "class") {
+	        	var attributeValue = $(mutation.target).prop(mutation.attributeName);
+
+	        	if (attributeValue.indexOf('is-focused') == -1 && attributeValue.indexOf('is-dirty') == -1) {
+	        		document.getElementById('add_new_sub_btn').innerText = 'add';
+	        	}
+	        }
+	    });
+	});
+
+	observer.observe($div[0],  {
+	    attributes: true
+	});
+
+
+	$.fn.htmlTo = function(elem) {
+	    return this.each(function() {
+	        $(elem).html($(this).html());
+	    });
+	}
+
+
+	// create table
+	var $table = $('<table class="table" id="table_subjects" style="margin-bottom: 0">');
+	// caption
+
+	// thead
+	$table.append('<thead>').children('thead')
+
+	//tbody
+	var $tbody = $table.append('<tbody />').children('tbody');
+
+	// add row
 	
+
+	// $title_all_subjects = [];
+	// $description_all_subjects = [];
+	// $task_amount_all_subjects = [];
+	var subjects_title = [
+		<?php
+			for($i = 0; $i < sizeof($title_all_subjects); $i++) {
+				echo "'$title_all_subjects[$i]',";
+			}
+
+		 ?>
+
+
+	];
+
+
+	var subjects_count = <?php echo sizeof($title_all_subjects); ?>;
+	
+	
+	for (var i = 0; i < subjects_count;) {
+		$tbody.append('<tr />').children('tr:last');
+		if (i < subjects_count) {
+			$tbody.append("<td>" + subjects_title[i] + "</td>")
+			
+			i ++;
+		}
+		if (i < subjects_count) {
+			$tbody.append("<td>" + subjects_title[i] + "</td>")
+			
+			i ++;
+		}
+		if (i < subjects_count) {
+			$tbody.append("<td>" + subjects_title[i] + "</td>")
+			
+			i ++;
+		}
+
+		
+	}
+
+	
+
+	// add table to dom
+	$table.htmlTo('#table_subjects');
+
+
+
+	// 				      	<thead></thead>
+	// 				    	<tbody>
+	// 					        <tr id="table_title">
+	// 					          <td data-title="">
+	// 					          	<div class="md-chip ">
+	// 						    		<div class="md-chip-img">
+	// 						      			<img src="https://pp.userapi.com/c639225/v639225332/1e1f0/Z3cRijG15zs.jpg">
+	// 						    		</div>
+	// 						    		<span class="md-chip-text">Material Design Chip</span>
+	// 						  		</div>
+	// 					          </td>
+	// 					          <td data-title="">
+	// 					          	<div class="md-chip ">
+	// 						    		<div class="md-chip-img">
+	// 						      			<img src="https://pp.userapi.com/c639225/v639225332/1e1f0/Z3cRijG15zs.jpg">
+	// 						    		</div>
+	// 						    		<span class="md-chip-text">Material Design Chip</span>
+	// 						  		</div>
+	// 					          </td>
+	// 					          <td data-title="">
+	// 					          	<div class="md-chip ">
+	// 						    		<div class="md-chip-img">
+	// 						      			<img src="https://pp.userapi.com/c639225/v639225332/1e1f0/Z3cRijG15zs.jpg">
+	// 						    		</div>
+	// 						    		<span class="md-chip-text">Material Design Chip</span>
+	// 						  		</div>
+	// 					          </td>
+						         
+	// 					        </tr>
+	// 					        <tr>
+	// 					          <td data-title="">
+	// 					          	<div class="md-chip ">
+	// 						    		<div class="md-chip-img">
+	// 						      			<img src="https://pp.userapi.com/c639225/v639225332/1e1f0/Z3cRijG15zs.jpg">
+	// 						    		</div>
+	// 						    		<span class="md-chip-text">Material Design Chip</span>
+	// 						  		</div>
+	// 					          </td>
+	// 					          <td data-title="">
+	// 					          	<div class="md-chip ">
+	// 						    		<div class="md-chip-img">
+	// 						      			<img src="https://pp.userapi.com/c639225/v639225332/1e1f0/Z3cRijG15zs.jpg">
+	// 						    		</div>
+	// 						    		<span class="md-chip-text">Material Design Chip</span>
+	// 						  		</div>
+	// 					          </td>
+	// 					          <td data-title="">
+	// 					          	<div class="md-chip ">
+	// 						    		<div class="md-chip-img">
+	// 						      			<img src="https://pp.userapi.com/c639225/v639225332/1e1f0/Z3cRijG15zs.jpg">
+	// 						    		</div>
+	// 						    		<span class="md-chip-text">test</span>
+	// 						  		</div>
+	// 					          </td>
+	// 					        </tr>
+	// 				    	</tbody>
+	// 				    </table>
 </script>
 
-  </body> 
+  </body>
 </html>
 
 
