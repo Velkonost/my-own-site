@@ -3,6 +3,9 @@
 	.card div.supplemental_actions button {
   		font-size: 12pt;
 	}
+
+
+	
 }
 
 /* Small Devices, Tablets */
@@ -12,6 +15,20 @@
 	}
 	.card {
 		width: 100%;
+	}
+	
+
+	.demo {
+		/* width: 100% !important;	 */
+		width: 103% !important;
+		margin-left: -2% !important;
+	}
+	.table tr {
+		margin-bottom: 1px;
+	}
+
+	.table_title {
+		display: none;
 	}
 }
 
@@ -23,6 +40,19 @@
 	.card {
 		width: 100%;
 	}
+	.demo {
+		/* width: 100% !important;	 */
+		width: 103% !important;
+		margin-left: -2% !important;
+	}
+	.table tr {
+		margin-bottom: 1px;
+	}
+
+	#table_title {
+		display: none;
+	}
+	
 	
 }
 
@@ -33,6 +63,20 @@
 	}
 	.card {
 		width: 100%;
+	}
+
+	.demo {
+		/* width: 100% !important;	 */
+		width: 103% !important;
+		margin-left: -2% !important;
+	}
+
+	.table tr {
+		margin-bottom: 1px;
+	}
+
+	#table_title {
+		display: none;
 	}
 	
 }

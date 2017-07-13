@@ -10,7 +10,7 @@ html {
 .card {
   display: block;
   width: 80%;
-  margin: 72px auto 72px;
+  margin: 72px auto 0px;
   padding: 0px;
   background-color: #ffffff;
   border-radius: 2px;
