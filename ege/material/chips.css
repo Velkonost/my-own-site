@@ -99,5 +99,9 @@
 
 /* For the sake of this demo */
 .md-chip {
-  margin: 0 20px 20px 0px;
+  /* margin: 0 20px 20px 0px; */
+}
+
+#table_subjects td {
+  padding: 10px;
 }

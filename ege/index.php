@@ -15,6 +15,15 @@ if(@$_POST['exit']) {
 	exit();
 }
 
+if(@$_POST['add_subject'] && isset($_POST['user_id']) && isset($_POST['sub_id'])) {
+
+    $sub_check = $dbconnect->query("SELECT * FROM active_subjects WHERE user_id='".$_POST['user_id']."' AND subject_id='".$_POST['sub_id']."'");
+    $check = $sub_check->num_rows;
+    if ($check == 0)
+        $dbconnect->query("INSERT INTO active_subjects VALUES('', '$_POST[user_id]', '$_POST[sub_id]')");
+
+}
+
 if (isset($_COOKIE['WebEngineerRestrictedArea'])){
 	$data_array = explode(":",$_COOKIE['WebEngineerRestrictedArea']);
 	if (preg_match("/^[a-zA-Z0-9]{3,30}$/", $data_array[0])) {
@@ -61,6 +70,7 @@ for ($i = 0; $i <= sizeof($subjects_ids) - 1; $i ++) {
 	array_push($task_amount_subjects, $subject_data['amount_tasks']);
 }
 
+$id_all_subjects = [];
 $title_all_subjects = [];
 $description_all_subjects = [];
 $task_amount_all_subjects = [];
@@ -68,22 +78,11 @@ $task_amount_all_subjects = [];
 $all_subjects = $dbconnect->query("SELECT * FROM subjects");
 
 while ($subject_id = ($all_subjects -> fetch_array())) {
+  array_push($id_all_subjects, $subject_id['id']);
 	array_push($title_all_subjects, $subject_id['title']);
 	array_push($description_all_subjects, $subject_id['description']);
 	array_push($task_amount_all_subjects, $subject_id['amount_tasks']);
 }
-
-// for ($i = 0; $i < sizeof($all_subjects) - 1; $i ++) {
-	
-// 	$subject_data = $all_subjects[$i] -> fetch_array();
-
-// 	array_push($title_all_subjects, $subject_data['title']);
-// 	array_push($description_all_subjects, $subject_data['description']);
-// 	array_push($task_amount_all_subjects, $subject_data['amount_tasks']);
-
-// 	echo $subject_data['title'];
-// }
-
 
 ?>
 
@@ -112,6 +111,7 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
 	    <link rel="stylesheet" href="css/media.css">
 	    <link rel="stylesheet" href="material/expand_card.css">
 	    <link rel="stylesheet" href="material/chips.css">
+      <link rel="stylesheet" href="material/dialog.css">
 	    <link rel="stylesheet" type="text/css" href="material/table.css">
 	    <style>
 	    #view-source {
@@ -132,7 +132,11 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
 	<body style="background-color: #8EB0BC">
   		<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
   			<input type='submit' name='exit' id="exit" value='Выйти' style="display: none" />
+            <input type='hidden' name='user_id' id="user_id" style="display: none" />
+            <input type='hidden' name='sub_id' id="sub_id" style="display: none" />
+            <input type='submit' name='add_subject' id="add_subject" value='Добавить предмет' style="display: none" />
 		</form>
+
   		<header id="preloader">
   			<div aria-busy="true" aria-label="Loading, please wait..." role="progressbar"></div>
 		</header>
@@ -248,18 +252,19 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
 		
 		   	<aside class="card" elevation="2" style="max-height: 52px; margin-top: 10px">
 				<div class="android-header-spacer mdl-layout-spacer"></div>
+
       			<div id="add_new_sub" class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width right" style="margin:auto">
         			<label class="mdl-button mdl-js-button mdl-button--icon" for="input_new_sub" style="float:right;">
           				<i class="material-icons" id="add_new_sub_btn">add</i>
         			</label>
         			<div class="mdl-textfield__expandable-holder" style="float: right; width: 900px">
-          				<input class="mdl-textfield__input autocomplete" type="text" id="input_new_sub" style="padding: 0">
+          				<input class="mdl-textfield__input autocomplete" name="input_new_sub" type="text" id="input_new_sub" oninput="searchSubjects()" style="padding: 0">
         			</div>
       			</div>
 			</aside> 
-			<div class="demo" id="demo_add">
+			<div class="demo" id="demo_add" style="height: 198px; overflow: scroll;">
 				<div class="">
-				<table class="table" id="table_subjects" style="margin-bottom: 0">
+				<table class="table" id="table_subjects" style="margin-bottom: 0;">
 				</table>
 				  	
 				</div>
@@ -467,8 +472,11 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
     <script src="material/material.min.js"></script>
     <script src="material/table.js"></script>
     <script src="material/card.js"></script>
+    <script src="material/dialog.js"></script>
     <script src="material/expand_card.js"></script>
 <script type="text/javascript">
+
+    var isAlertDialogExist = false;
 	
 	function goOut(){
 	  $("#exit").click();
@@ -479,14 +487,6 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
 	    $('#preloader').hide();
 	});
 
-	// $('#table_subjects > tr').eq(1).children('td').eq(1).remove();
-	$('#table_subjects > tr > td').remove();
-
-
-	$('#add_new_sub_btn').on('click', function() {
-		document.getElementById('add_new_sub_btn').innerText = 'done';
-	});
-
 	var $div = $("#add_new_sub");
 	var observer = new MutationObserver(function(mutations) {
 	    mutations.forEach(function(mutation) {
@@ -495,7 +495,9 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
 
 	        	if (attributeValue.indexOf('is-focused') == -1 && attributeValue.indexOf('is-dirty') == -1) {
 	        		document.getElementById('add_new_sub_btn').innerText = 'add';
-	        	}
+	        	} else {
+              document.getElementById('add_new_sub_btn').innerText = 'clear';  
+            }
 	        }
 	    });
 	});
@@ -511,123 +513,146 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
 	    });
 	}
 
+    var active_subjects_title = [
+        <?php
+            for($i = 0; $i < sizeof($title_subjects); $i++) {
+                echo "'$title_subjects[$i]',";
+            }
+         ?>
+    ];
 
-	// create table
-	var $table = $('<table class="table" id="table_subjects" style="margin-bottom: 0">');
-	// caption
+    console.log(active_subjects_title);
 
-	// thead
-	$table.append('<thead>').children('thead')
 
-	//tbody
-	var $tbody = $table.append('<tbody />').children('tbody');
-
-	// add row
-	
-
-	// $title_all_subjects = [];
-	// $description_all_subjects = [];
-	// $task_amount_all_subjects = [];
 	var subjects_title = [
 		<?php
 			for($i = 0; $i < sizeof($title_all_subjects); $i++) {
 				echo "'$title_all_subjects[$i]',";
 			}
-
 		 ?>
-
-
 	];
 
+    var subjects_description = [
+        <?php
+            for($i = 0; $i < sizeof($description_all_subjects); $i++) {
+                echo "'$description_all_subjects[$i]',";
+            }
+         ?>
+    ];
 
-	var subjects_count = <?php echo sizeof($title_all_subjects); ?>;
-	
-	
-	for (var i = 0; i < subjects_count;) {
-		$tbody.append('<tr />').children('tr:last');
-		if (i < subjects_count) {
-			$tbody.append("<td>" + subjects_title[i] + "</td>")
-			
-			i ++;
-		}
-		if (i < subjects_count) {
-			$tbody.append("<td>" + subjects_title[i] + "</td>")
-			
-			i ++;
-		}
-		if (i < subjects_count) {
-			$tbody.append("<td>" + subjects_title[i] + "</td>")
-			
-			i ++;
-		}
+    var subjects_ids = [
+        <?php
+            for($i = 0; $i < sizeof($id_all_subjects); $i++) {
+                echo "'$id_all_subjects[$i]',";
+            }
+         ?>
+    ];
 
-		
+	var accepted_subjects_title = [];
+    var accepted_subjects_id = [];
+
+	for (var i = 0; i < subjects_title.length; i++) {
+        if (active_subjects_title.indexOf(subjects_title[i]) == -1) {
+    		accepted_subjects_title.push(subjects_title[i]);
+            accepted_subjects_id.push(subjects_ids[i]);
+        }
 	}
 
-	
+	generateSubjectsTable(accepted_subjects_title, accepted_subjects_id);
+	function generateSubjectsTable(accepted_subjects_title, ids) {
+		var $table = $('<table class="table" id="table_subjects" style="margin-bottom: 0">');
+		
+		$table.append('<thead>').children('thead')
 
-	// add table to dom
-	$table.htmlTo('#table_subjects');
+		var $tbody = $table.append('<tbody />').children('tbody');
+
+		var subjects_count = accepted_subjects_title.length;
+		
+		for (var i = 0; i < subjects_count;) {
+			$tbody.append('<tr />').children('tr:last');
+			if (i < subjects_count) {
+				$tbody.append("<td><div class=\"md-chip\" onclick=\"generateAlertDialog(" + ids[i] + ")\"><span class=\"md-chip-text\">" + accepted_subjects_title[i] + "</span></div></td>");
+				i ++;
+			}
+			if (i < subjects_count) {
+				$tbody.append("<td><div class=\"md-chip\" onclick=\"generateAlertDialog(" + ids[i] + ")\"><span class=\"md-chip-text\">" + accepted_subjects_title[i] + "</span></div></td>");
+				i ++;
+			}
+			// if (i < subjects_count) {
+			// 	$tbody.append("<td><div class=\"md-chip\"><span class=\"md-chip-text\">" + accepted_subjects_title[i] + "</span></div></td>");
+			// 	i ++;
+			// }
+			// if (i < subjects_count) {
+			// 	$tbody.append("<td><div class=\"md-chip\"><span class=\"md-chip-text\">" + accepted_subjects_title[i] + "</span></div></td>");
+			// 	i ++;
+			// }	
+		}
+		
+		$table.htmlTo('#table_subjects');
+	}
+
+    function generateSubjectWarning() {
+        var $table = $('<table class="table" id="table_subjects" style="margin-bottom: 0">');
+        
+        $table.append('<thead>').children('thead')
+
+        var $tbody = $table.append('<tbody />').children('tbody');
+        $tbody.append('<tr />').children('tr:last');
+        $tbody.append("<td style=\" padding:20px \">Нет результатов</td>");
+        $table.htmlTo('#table_subjects');
+    }
+
+	function searchSubjects() {
+		var to_search = $('input[name="input_new_sub"]').val();
+
+        var accepted_subjects_title = [];
+        var accepted_subjects_id = [];
+
+        for (var i = 0; i < subjects_title.length; i++) {
+            if (subjects_title[i].indexOf(to_search) != -1  && (active_subjects_title.indexOf(subjects_title[i]) == -1)) {
+                accepted_subjects_title.push(subjects_title[i]);
+                accepted_subjects_id.push(subjects_ids[i]);
+            }
+        }
+        
+        generateSubjectsTable(accepted_subjects_title, accepted_subjects_id);
+        if (accepted_subjects_title.length == 0) {
+          generateSubjectWarning();
+        }
+	}
 
 
+    $(document).click(function(event) { 
+        if(!$(event.target).closest('#nominee_alert_dialog').length) {
+            if (!isAlertDialogExist) {
+                destroyAlertDialog();
+            }
 
-	// 				      	<thead></thead>
-	// 				    	<tbody>
-	// 					        <tr id="table_title">
-	// 					          <td data-title="">
-	// 					          	<div class="md-chip ">
-	// 						    		<div class="md-chip-img">
-	// 						      			<img src="https://pp.userapi.com/c639225/v639225332/1e1f0/Z3cRijG15zs.jpg">
-	// 						    		</div>
-	// 						    		<span class="md-chip-text">Material Design Chip</span>
-	// 						  		</div>
-	// 					          </td>
-	// 					          <td data-title="">
-	// 					          	<div class="md-chip ">
-	// 						    		<div class="md-chip-img">
-	// 						      			<img src="https://pp.userapi.com/c639225/v639225332/1e1f0/Z3cRijG15zs.jpg">
-	// 						    		</div>
-	// 						    		<span class="md-chip-text">Material Design Chip</span>
-	// 						  		</div>
-	// 					          </td>
-	// 					          <td data-title="">
-	// 					          	<div class="md-chip ">
-	// 						    		<div class="md-chip-img">
-	// 						      			<img src="https://pp.userapi.com/c639225/v639225332/1e1f0/Z3cRijG15zs.jpg">
-	// 						    		</div>
-	// 						    		<span class="md-chip-text">Material Design Chip</span>
-	// 						  		</div>
-	// 					          </td>
-						         
-	// 					        </tr>
-	// 					        <tr>
-	// 					          <td data-title="">
-	// 					          	<div class="md-chip ">
-	// 						    		<div class="md-chip-img">
-	// 						      			<img src="https://pp.userapi.com/c639225/v639225332/1e1f0/Z3cRijG15zs.jpg">
-	// 						    		</div>
-	// 						    		<span class="md-chip-text">Material Design Chip</span>
-	// 						  		</div>
-	// 					          </td>
-	// 					          <td data-title="">
-	// 					          	<div class="md-chip ">
-	// 						    		<div class="md-chip-img">
-	// 						      			<img src="https://pp.userapi.com/c639225/v639225332/1e1f0/Z3cRijG15zs.jpg">
-	// 						    		</div>
-	// 						    		<span class="md-chip-text">Material Design Chip</span>
-	// 						  		</div>
-	// 					          </td>
-	// 					          <td data-title="">
-	// 					          	<div class="md-chip ">
-	// 						    		<div class="md-chip-img">
-	// 						      			<img src="https://pp.userapi.com/c639225/v639225332/1e1f0/Z3cRijG15zs.jpg">
-	// 						    		</div>
-	// 						    		<span class="md-chip-text">test</span>
-	// 						  		</div>
-	// 					          </td>
-	// 					        </tr>
-	// 				    	</tbody>
-	// 				    </table>
+            isAlertDialogExist = !isAlertDialogExist;
+        }        
+    })
+    function generateAlertDialog(id) {
+        isAlertDialogExist = true;
+        
+        var index = subjects_ids.indexOf(id.toString());
+        var title = subjects_title[index];
+        var description = subjects_description[index];
+
+        $('body').append('<div id="alert-dialog" style="z-index:1" class="nominee-alert"><div id="nominee_alert_dialog" class="nominee-alert-box"><div class="nominee-alert-box-title">' + title + '<i style="float:right" onclick="destroyAlertDialog()" class="material-icons">clear</i></div><p>' + description + '</p><div class="nominee-alert-buttons"><a href="javascript:void(0);" onclick="addSubject(' + id + ')">ДОБАВИТЬ</a></div></div></div>');
+
+  }
+
+  function destroyAlertDialog() {
+    $('#alert-dialog').remove();
+  }
+  function addSubject(id) {
+    $('#sub_id').val(id);
+    $('#user_id').val("<?=$user_data['id']?>");
+
+    $("#add_subject").click();
+  }
+
+
 </script>
 
   </body>
