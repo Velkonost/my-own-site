@@ -21,7 +21,6 @@ if(@$_POST['add_subject'] && isset($_POST['user_id']) && isset($_POST['sub_id'])
     $check = $sub_check->num_rows;
     if ($check == 0)
         $dbconnect->query("INSERT INTO active_subjects VALUES('', '$_POST[user_id]', '$_POST[sub_id]')");
-
 }
 
 if (isset($_COOKIE['WebEngineerRestrictedArea'])){
@@ -150,18 +149,14 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
           </span>
           <!-- Add spacer, to align navigation to the right in desktop -->
           <div class="android-header-spacer mdl-layout-spacer"></div>
-          <div class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search-field">
-            </div>
-          </div>
+          
           <!-- Navigation -->
           <div class="android-navigation-container">
             <nav class="android-navigation mdl-navigation">
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Главная</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Создать</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Голосовать</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Пользователи</a>
               
             </nav>
           </div>
@@ -184,9 +179,9 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
         </span>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="">Главная</a>
-          <a class="mdl-navigation__link" href="">Tablets</a>
-          <a class="mdl-navigation__link" href="">Wear</a>
-          <a class="mdl-navigation__link" href="">TV</a>
+          <a class="mdl-navigation__link" href="">Создать</a>
+          <a class="mdl-navigation__link" href="">Голосовать</a>
+          <a class="mdl-navigation__link" href="">Пользователи</a>
           <a class="mdl-navigation__link" href="">Auto</a>
           <a class="mdl-navigation__link" href="">One</a>
           <a class="mdl-navigation__link" href="">Play</a>
@@ -311,7 +306,7 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
             </div>
           </div>
         </div> -->
-        <div class="android-wear-section">
+        <!-- <div class="android-wear-section">
           <div class="android-wear-band">
             <div class="android-wear-band-text">
               <div class="mdl-typography--display-2 mdl-typography--font-thin">The best of Google built in</div>
@@ -326,8 +321,8 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
               </p>
             </div>
           </div>
-        </div>
-        <div class="android-customized-section">
+        </div> -->
+        <!-- <div class="android-customized-section">
           <div class="android-customized-section-text">
             <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast">Customised by you, for you</div>
             <p class="mdl-typography--font-light">
@@ -337,8 +332,8 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
             </p>
           </div>
           <div class="android-customized-section-image"></div>
-        </div>
-        <div class="android-more-section">
+        </div> -->
+        <!-- <div class="android-more-section">
           <div class="android-section-title mdl-typography--display-1-color-contrast">More from Android</div>
           <div class="android-card-container mdl-grid">
             <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
@@ -413,7 +408,7 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <footer class="android-footer mdl-mega-footer">
           <div class="mdl-mega-footer--top-section">
@@ -433,12 +428,12 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
           </div>
 
           <div class="mdl-mega-footer--middle-section">
-            <p class="mdl-typography--font-light">Satellite imagery: © 2014 Astrium, DigitalGlobe</p>
-            <p class="mdl-typography--font-light">Some features and devices may not be available in all areas</p>
+            <p class="mdl-typography--font-light">© 2017 Артём Клименко</p>
+            <p class="mdl-typography--font-light">Нашли ошибку? Пишите: velkonost@gmail.com</p>
           </div>
 
           <div class="mdl-mega-footer--bottom-section">
-            <a class="android-link android-link-menu mdl-typography--font-light" id="version-dropdown">
+          <!--   <a class="android-link android-link-menu mdl-typography--font-light" id="version-dropdown">
               Versions
               <i class="material-icons">arrow_drop_up</i>
             </a>
@@ -447,8 +442,8 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
               <li class="mdl-menu__item">4.4 KitKat</li>
               <li class="mdl-menu__item">4.3 Jelly Bean</li>
               <li class="mdl-menu__item">Android History</li>
-            </ul>
-            <a class="android-link android-link-menu mdl-typography--font-light" id="developers-dropdown">
+            </ul> -->
+           <!--  <a class="android-link android-link-menu mdl-typography--font-light" id="developers-dropdown">
               For Developers
               <i class="material-icons">arrow_drop_up</i>
             </a>
@@ -457,7 +452,7 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
               <li class="mdl-menu__item">Android Open Source Project</li>
               <li class="mdl-menu__item">Android SDK</li>
               <li class="mdl-menu__item">Android for Work</li>
-            </ul>
+            </ul> -->
             <a class="android-link mdl-typography--font-light" href="https://velkonost.ru">Разработчик</a>
             <a class="android-link mdl-typography--font-light" href="">Privacy Policy</a>
           </div>
@@ -476,14 +471,13 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
     <script src="material/expand_card.js"></script>
 <script type="text/javascript">
 
-    var isAlertDialogExist = false;
+  var isAlertDialogExist = false;
 	
 	function goOut(){
 	  $("#exit").click();
 	}
 
 	jQuery(window).load(function () {
-
 	    $('#preloader').hide();
 	});
 
