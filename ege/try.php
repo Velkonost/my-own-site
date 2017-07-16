@@ -15,10 +15,6 @@ if(@$_POST['exit']) {
 	exit();
 }
 
-if(@$_POST['go_try'] && isset($_POST['try_sub_id'])) {
-	echo $_POST['try_sub_id'];
-}
-
 if (isset($_COOKIE['WebEngineerRestrictedArea'])){
 	$data_array = explode(":",$_COOKIE['WebEngineerRestrictedArea']);
 	if (preg_match("/^[a-zA-Z0-9]{3,30}$/", $data_array[0])) {
@@ -41,6 +37,25 @@ if (isset($access) and $access = TRUE) {?>
 
 <?php
 
+if(@$_POST['go_try'] && isset($_POST['try_sub_id'])) {
+	$current_variant = $dbconnect->query("SELECT * FROM meta_current_variant WHERE user_id='".$user_data['id']."' AND subject_id='".$_POST['try_sub_id']."' ");
+	$variant_number = $current_variant->fetch_array();
+	$variant_number = $variant_number['variant'];
+
+	$tasks_title = [];
+	$tasks_description = [];
+	$tasks_answer = [];
+	$tasks_type_answer = [];
+	$tasks_additional = [];
+
+	$tasks = $dbconnect->query("SELECT * FROM task_variants WHERE subject_variant_id='".$variant_number."' AND subject_id='".$_POST['try_sub_id']."' ");
+
+	while ($task = ($tasks -> fetch_array())) {
+		// array_push($subjects_ids, $subject_id['subject_id']);
+		echo $task['id'];
+	}
+
+}
 
 ?>
 

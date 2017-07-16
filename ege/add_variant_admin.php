@@ -80,7 +80,7 @@ if(@$_POST['add_variant'] && isset($_POST['sub_id']) && isset($_POST['variant_id
 			$dbconnect->query("INSERT INTO task_variants VALUES('', '$_POST[sub_id]', '$_POST[variant_id]', '$title', '$description', '$i', '$answer')");
 			$task_id = mysqli_insert_id($dbconnect);
 
-			if ($all_types_of_answers[$index][$i] == "checkboxes" || $all_types_of_answers[$index][$i] == "radio_btn") {
+			if ($all_types_of_answers[$index][$i] == "checkboxes" || $all_types_of_answers[$index][$i] == "radio_btn" || $all_types_of_answers[$index][$i] == "few_line") {
 				for ($j = 0; $j < $tasks_additionals[$i]; $j ++) {
 					$name = "task$i".$all_types_of_answers[$index][$i];
 					$name = $_POST[$name][$j];
@@ -292,14 +292,14 @@ if(@$_POST['add_variant'] && isset($_POST['sub_id']) && isset($_POST['variant_id
         			to_append += '<input type="text" placeholder="answer" name="answer' + i + '[]" id="answer' + i + '"><br>';
         			to_append += "Варианты ответов:<br>";
         			for (var j = 0; j < all_additional[index][i]; j++) {
-        				to_append += "<input type=\"checkbox\" disabled><input type=\"text\" name=\"task" + i + all_types_of_answers[index][i] + "[]\" id=\"task" + i + all_types_of_answers[index][i] + j +" \"><br> ";
+        				to_append += "<input name=\"checkbox"+i+"\" type=\"checkbox\" value=\""+j+"\" onclick=\"setAnswerCheckbox("+i+", "+all_additional[index][i]+")\"><input type=\"text\" name=\"task" + i + all_types_of_answers[index][i] + "[]\" id=\"task" + i + all_types_of_answers[index][i] + j +" \"><br> ";
         			}
         			break;
         		case 'radio_btn':
         			to_append += '<input type="text" placeholder="answer" name="answer' + i + '[]" id="answer' + i + '"><br>';
         			to_append += 'Варианты ответов:<br><fieldset id="group' + i + '">';
         			for (var j = 0; j < all_additional[index][i]; j++) {
-        				to_append += "<input type=\"radio\" disabled><input type=\"text\" name=\"task" + i + all_types_of_answers[index][i] + "[]\" id=\"task" + i + all_types_of_answers[index][i] + j +" \"><br> ";
+        				to_append += "<input type=\"radio\" name=\"radio_btn"+i+"\" value=\""+j+"\" onclick=\"setAnswerRadio("+i+", "+all_additional[index][i]+")\"><input type=\"text\" name=\"task" + i + all_types_of_answers[index][i] + "[]\" id=\"task" + i + all_types_of_answers[index][i] + j +" \"><br> ";
         			}
         			to_append += "</fieldset>";
         			break;
@@ -308,9 +308,9 @@ if(@$_POST['add_variant'] && isset($_POST['sub_id']) && isset($_POST['variant_id
         			break;
         		case 'few_line':
         			to_append += '<input type="text" placeholder="answer" name="answer' + i + '[]" id="answer' + i + '"><br>';
-        			to_append += "Количество полей:<br>";
+        			to_append += "Подписи к полям:<br>";
         			for (var j = 0; j < all_additional[index][i]; j++) {
-        				to_append += "<input disabled type=\"text\" name=\"task" + i + all_types_of_answers[index][i] + " \" id=\"task" + i + all_types_of_answers[index][i] + j +" \"><br> ";
+        				to_append += "<input type=\"text\" name=\"few_line" + i + "\" oninput=\"setAnswerFewLine("+i+", "+all_additional[index][i]+")\" id=\"task" + i + all_types_of_answers[index][i] + j +" \"><input type=\"text\" name=\"task" + i + all_types_of_answers[index][i] + "[]\" id=\"task" + i + all_types_of_answers[index][i] + j +" \"><br> ";
         			}
         			break;
         		case 'text_area':
@@ -345,6 +345,62 @@ if(@$_POST['add_variant'] && isset($_POST['sub_id']) && isset($_POST['variant_id
         if (accepted_subjects_title.length == 0) {
           generateSubjectWarning();
         }
+	}
+
+	function setAnswerCheckbox(id, length) {
+		var isChecked = [];
+		var name = "checkbox" + id;
+		var checkboxes = document.getElementsByName(name);
+		for (var i = 0; i < length; i++) {
+			if (checkboxes[i].checked) {
+				isChecked.push(true);
+			} else {
+				isChecked.push(false);	
+			}
+		}
+
+		var correct_answer = "";
+
+		for (var i = 0; i < length; i++) {
+			if(isChecked[i])
+				correct_answer += (i + 1);
+		}
+		var answer = "answer" + id;
+		document.getElementById(answer).value = correct_answer;
+	}
+
+	function setAnswerRadio(id, length) {
+		var isChecked = [];
+		var name = "radio_btn" + id;
+		var radios = document.getElementsByName(name);
+		for (var i = 0; i < length; i++) {
+			if (radios[i].checked) {
+				isChecked.push(true);
+			} else {
+				isChecked.push(false);	
+			}
+		}
+
+		var correct_answer = "";
+
+		for (var i = 0; i < length; i++) {
+			if(isChecked[i])
+				correct_answer += (i + 1);
+		}
+		var answer = "answer" + id;
+		document.getElementById(answer).value = correct_answer;
+	}
+
+	function setAnswerFewLine(id, length) {
+		var name = "few_line" + id;
+		var inputs = document.getElementsByName(name);
+		var correct_answer = "";
+
+		for (var i = 0; i < length; i++) {
+			correct_answer += inputs[i].value + " ";
+		}
+		var answer = "answer" + id;
+		document.getElementById(answer).value = correct_answer;
 	}
 
 </script>

@@ -42,8 +42,6 @@ if(@$_POST['create_sub'] && isset($_POST['sub_name']) && isset($_POST['tasks_amo
     }
 }
 
-
-
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" id="form">
