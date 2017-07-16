@@ -84,7 +84,7 @@ if(@$_POST['add_variant'] && isset($_POST['sub_id']) && isset($_POST['variant_id
 				for ($j = 0; $j < $tasks_additionals[$i]; $j ++) {
 					$name = "task$i".$all_types_of_answers[$index][$i];
 					$name = $_POST[$name][$j];
-					echo $name;
+					
 					$dbconnect->query("INSERT INTO meta_tasks VALUES('', '$task_id', '$j', '$name')");
 				}
 			}

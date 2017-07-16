@@ -95,8 +95,8 @@ if (isset($_POST['check_reg']) && $_POST['check_reg'] == 'auth') {
 
     <div class="content">
     	<input id="check_reg" name="check_reg" style="display: none" value="auth" />
-		<input name="login" type="text" size="45" class="input username" placeholder="Логин" onfocus="this.value=''" />
-		<input name="password" type="password" class="input password" placeholder="Пароль" onfocus="this.value=''" />
+		<input name="login" type="text" size="45" class="input username" placeholder="Логин"  />
+		<input name="password" type="password" class="input password" placeholder="Пароль" />
 		<input name="rpt_password" id="rpt_password" type="password" class="input rpt_password" placeholder="Повтор пароля" style="display: none" onfocus="this.value=''" />
     </div>
 

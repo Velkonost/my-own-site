@@ -182,9 +182,6 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
           <a class="mdl-navigation__link" href="">Создать</a>
           <a class="mdl-navigation__link" href="">Голосовать</a>
           <a class="mdl-navigation__link" href="">Пользователи</a>
-          <a class="mdl-navigation__link" href="">Auto</a>
-          <a class="mdl-navigation__link" href="">One</a>
-          <a class="mdl-navigation__link" href="">Play</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Прочее</span>
           <a class="mdl-navigation__link" href="">Настройки</a>
@@ -250,7 +247,7 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
 
       			<div id="add_new_sub" class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width right" style="margin:auto">
         			<label class="mdl-button mdl-js-button mdl-button--icon" for="input_new_sub" style="float:right;">
-          				<i class="material-icons" id="add_new_sub_btn">add</i>
+          				<i class="material-icons" id="add_new_sub_btn" onclick="clearSearchInput()">add</i>
         			</label>
         			<div class="mdl-textfield__expandable-holder" style="float: right; width: 900px">
           				<input class="mdl-textfield__input autocomplete" name="input_new_sub" type="text" id="input_new_sub" oninput="searchSubjects()" style="padding: 0">
@@ -572,14 +569,6 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
 				$tbody.append("<td><div class=\"md-chip\" onclick=\"generateAlertDialog(" + ids[i] + ")\"><span class=\"md-chip-text\">" + accepted_subjects_title[i] + "</span></div></td>");
 				i ++;
 			}
-			// if (i < subjects_count) {
-			// 	$tbody.append("<td><div class=\"md-chip\"><span class=\"md-chip-text\">" + accepted_subjects_title[i] + "</span></div></td>");
-			// 	i ++;
-			// }
-			// if (i < subjects_count) {
-			// 	$tbody.append("<td><div class=\"md-chip\"><span class=\"md-chip-text\">" + accepted_subjects_title[i] + "</span></div></td>");
-			// 	i ++;
-			// }	
 		}
 		
 		$table.htmlTo('#table_subjects');
@@ -644,6 +633,11 @@ while ($subject_id = ($all_subjects -> fetch_array())) {
     $('#user_id').val("<?=$user_data['id']?>");
 
     $("#add_subject").click();
+  }
+
+  function clearSearchInput() {
+    document.getElementById('input_new_sub').value = '';
+    searchSubjects();
   }
 
 
