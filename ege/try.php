@@ -49,10 +49,24 @@ if(@$_POST['go_try'] && isset($_POST['try_sub_id'])) {
 	$tasks_additional = [];
 
 	$tasks = $dbconnect->query("SELECT * FROM task_variants WHERE subject_variant_id='".$variant_number."' AND subject_id='".$_POST['try_sub_id']."' ");
+	$subject = $dbconnect->query("SELECT * FROM subject_task WHERE subject_id='".$_POST['try_sub_id']."' ");
 
 	while ($task = ($tasks -> fetch_array())) {
-		// array_push($subjects_ids, $subject_id['subject_id']);
-		echo $task['id'];
+		$subject_task = $subject -> fetch_array();
+		$type_of_answer = $subject_task['type_of_answer'];
+
+		array_push($tasks_title, $task['title']);
+		array_push($tasks_description, $task['description']);
+		array_push($tasks_answer, $task['answer']);
+		array_push($tasks_type_answer, $type_of_answer);
+
+		$task_additional = [];
+		$additional = $dbconnect->query("SELECT * FROM meta_tasks WHERE task_id='".$task['id']."' ");
+		while($additional_data = ($additional->fetch_array())) {
+			array_push($tasks_additional, $additional_data['title']);
+		}
+		array_push($tasks_additional, $task_additional);
+	
 	}
 
 }
